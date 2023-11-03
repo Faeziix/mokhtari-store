@@ -27,9 +27,16 @@ export default async function Home() {
 
   return (
     <div className="mx-5">
-      <h1>Products</h1>
+      <h1>Best Seller</h1>
 
-      <div className="grid grid-cols-4 gap-2">
+      <p>Elavate your beauty routine with our all-time fan favorites.</p>
+
+      <div className="flex gap-2 my-2">
+        <button className="px-4 py-2">Sort by</button>
+        <button className="px-4 py-2">Filter</button>
+      </div>
+
+      <div className="grid md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 justify-center gap-4">
         {products.data.data.map((item) => (
           <Product key={item.id} data={item} />
         ))}

@@ -1,10 +1,10 @@
 import Header from "@/components/layout/Header";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Noto_Sans } from "next/font/google";
-import "tw-elements/dist/css/tw-elements.min.css";
+import { Noto_Sans, Roboto } from "next/font/google";
+import "tw-elements-react/dist/css/tw-elements-react.min.css";
 
-const kameron = Noto_Sans({
+const roboto = Roboto({
   weight: ["400", "700"],
   subsets: ["latin"],
 });
@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={kameron.className}>
+      <body className={roboto.className}>
         <Header />
         {children}
       </body>

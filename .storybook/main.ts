@@ -11,7 +11,34 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
-    "@storybook/addon-styling-webpack"
+    "@storybook/addon-styling-webpack",
+    {
+      name: "@storybook/addon-styling-webpack",
+
+      options: {
+        rules: [
+          {
+            test: /\.css$/,
+            sideEffects: true,
+            use: [
+              require.resolve("style-loader"),
+              {
+                loader: require.resolve("css-loader"),
+                options: {
+                  importLoaders: 1,
+                },
+              },
+              {
+                loader: require.resolve("postcss-loader"),
+                options: {
+                  implementation: require.resolve("postcss"),
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
   ],
   framework: {
     name: "@storybook/nextjs",
@@ -23,10 +50,7 @@ const config: StorybookConfig = {
   webpackFinal: async (config, { configType }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@/hooks": path.resolve(__dirname, "../hooks"),
-      "@/components": path.resolve(__dirname, "../components"),
-      "@/public": path.resolve(__dirname, "../public"),
-      "@/utils": path.resolve(__dirname, "../utils"),
+      '@': [path.resolve(__dirname, '../')],
     };
 
     return config;

@@ -1,30 +1,34 @@
+"use client";
 import React, { useEffect } from "react";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { cn } from "@/utils";
+import { Input as MInput } from "@material-tailwind/react";
 
-const input = cva(
-  "input input-bordered focus:outline-none focus:shadow-outline",
-  {
-    variants: {
-      Size: {
-        sm: "input-sm",
-        md: "input-md",
-        lg: "input-lg",
-      },
-      state: {
-        default: "input",
-        error: "input-error",
-      },
+const input = cva("", {
+  variants: {
+    Size: {
+      sm: "input-sm",
+      md: "input-md",
+      lg: "input-lg",
     },
-    defaultVariants: {
-      Size: "md",
-      state: "default",
+    state: {
+      default: "input",
+      error: "input-error",
     },
-  }
-);
+    type: {
+      text: "",
+      file: "",
+    },
+  },
+  defaultVariants: {
+    Size: "md",
+    state: "default",
+    type: "text",
+  },
+});
 
-const label = cva("block text-gray-700 text-sm font-bold mb-2", {
+const label = cva("mb-2 inline-block text-neutral-700 dark:text-neutral-200", {
   variants: {
     Size: {
       sm: "text-sm",
@@ -63,26 +67,23 @@ function Input({
   labelState,
   ...props
 }: InputProps) {
-  useEffect(() => {
-    const init = async () => {
-      const { Input, initTE } = await import("tw-elements");
-      initTE({ Input });
-    };
-    init();
-  }, []);
-
   return (
-    <div className="form-control">
-      {labelText && (
-        <label htmlFor={name} className={cn(label({ Size, labelState }))}>
+    <div className="relative">
+      {props.type == "file" ? (
+        <label
+          className={cn(label({ Size, labelState }), "cursor-pointer")}
+          htmlFor={name}
+        >
           {labelText}
         </label>
-      )}
-      <input
+      ) : null}
+      <MInput
         {...props}
-        id={name}
         name={name}
-        className={cn(input({ state, Size }), props.className)}
+        label={props.type == "file" ? "" : labelText}
+        variant="outlined"
+        crossOrigin
+        color="orange"
       />
       {state == "error" && (
         <p className="text-error text-sm mt-1">{errorMessage}</p>

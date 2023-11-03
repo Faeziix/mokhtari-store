@@ -20,7 +20,7 @@ function Product({ data }: ItemProps) {
   }
 
   return (
-    <div className="text-left rounded-md p-4 max-w-[300px] w-full flex flex-col gap-4 justify-between shadow-[rgba(149,157,165,0.2)_0px_4px_24px]">
+    <div className="text-left rounded-md p-4 md:max-w-[300px] w-full flex flex-col gap-4 justify-between shadow-[rgba(149,157,165,0.2)_0px_4px_24px]">
       <div className=" flex flex-col gap-2 w-full">
         <Link className="w-full" href="#">
           <div className="mx-auto">
@@ -39,20 +39,28 @@ function Product({ data }: ItemProps) {
         </Link>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <p>
-          {Number(price).toLocaleString(undefined, {
-            maximumFractionDigits: 2,
-          })}{" "}
-          T
-        </p>
-        {/* <button */}
-        {/*   onClick={onClick} */}
-        {/*   className="border font-bold px-2 py-2 rounded" */}
-        {/* > */}
-        {/*   Add to cart */}
-        {/* </button> */}
+      <div className="flex text-xs justify-center items-center mb-4">
+        <div className="bg-black text-white px-2 py-1">100ml</div>
+        <div className="px-2 py-1">100ml</div>
+        <div className="px-2 py-1">100ml</div>
       </div>
+      <button className="bg-gray-300 py-2">
+        <span className="font-bold">ADD TO BAG</span>
+        <div className="flex flex-col gap-2">
+          <p>
+            {Number(price).toLocaleString(undefined, {
+              maximumFractionDigits: 2,
+            })}{" "}
+            T
+          </p>
+          {/* <button */}
+          {/*   onClick={onClick} */}
+          {/*   className="border font-bold px-2 py-2 rounded" */}
+          {/* > */}
+          {/*   Add to cart */}
+          {/* </button> */}
+        </div>
+      </button>
     </div>
   );
 }
