@@ -1,3 +1,5 @@
+"use server";
+
 import { addToCart, createCart, getCart } from "@/utils/prisma-actions";
 import { cookies } from "next/headers";
 
