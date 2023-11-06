@@ -1,8 +1,8 @@
 import Product from "@/components/products/Product";
 import React from "react";
-import FilterSidebar from "./FilterSidebar";
 import ProductPic from "@/public/product-pic.jpg";
-import SearchInput from "./SearchInput";
+import FilterSidebar from "@/components/products/FilterSidebar";
+import SearchInput from "@/components/products/SearchInput";
 
 const products = [
   {

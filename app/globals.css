@@ -7,19 +7,19 @@ body {
 }
 
 h1 {
+  @apply text-4xl;
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 h2 {
-  font-size: 1.5rem;
+  @apply text-3xl;
   font-weight: 700;
   margin-bottom: 1rem;
 }
 
 h3 {
-  font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }

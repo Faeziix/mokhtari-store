@@ -21,6 +21,15 @@ const config: Config = withMT({
       "4xl": "2.441rem",
       "5xl": "3.052rem",
     },
+    extend: {
+      colors: {
+        secondary: {
+          100: "#F7EEDA",
+          500: "#D5A848",
+          800: "#6F4200",
+        },
+      },
+    },
   },
 
   plugins: [require("tw-elements-react/dist/plugin.cjs")],

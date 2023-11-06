@@ -6,8 +6,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useCartStore } from "@/stores/cart-store";
-import Tag from "@/app/products/Tag";
-import Tags from "@/app/products/Tags";
+import Tags from "./Tags";
 
 type ItemProps = {
   data: {
