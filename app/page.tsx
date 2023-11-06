@@ -2,32 +2,44 @@ import Product from "@/components/products/Product";
 import { PrismaClient } from "@prisma/client";
 import { cookies } from "next/headers";
 import { getCart, getItems } from "@/utils/prisma-actions";
+import ProductPic from "@/public/product-pic.jpg";
 import axios from "axios";
+
+const products = [
+  {
+    id: 1,
+    name: "Product 1",
+    brand: "Brand 1",
+    description: "Description 1",
+    price: 100,
+    picture: ProductPic,
+  },
+];
 
 const prisma = new PrismaClient();
 
 export default async function Home() {
   let cartId = cookies().get("cartId")?.value;
 
-  let products = await axios.get("http://127.0.0.1:1337/api/products", {
-    params: {
-      populate: {
-        picture: {
-          fields: ["url"],
-        },
-      },
-    },
-    // headers: {
-    //   Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_APIKEY}`,
-    // },
-  });
+  // let products = await axios.get("http://127.0.0.1:1337/api/products", {
+  //   params: {
+  //     populate: {
+  //       picture: {
+  //         fields: ["url"],
+  //       },
+  //     },
+  //   },
+  //   // headers: {
+  //   //   Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_APIKEY}`,
+  //   // },
+  // });
 
   const items = await getItems();
   const cartItems = await getCart(cartId);
 
   return (
     <div className="mx-5">
-      <h1>Best Seller</h1>
+      <h1 className="">Best Seller</h1>
 
       <p>Elavate your beauty routine with our all-time fan favorites.</p>
 
@@ -37,7 +49,7 @@ export default async function Home() {
       </div>
 
       <div className="grid md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 justify-center gap-4">
-        {products.data.data.map((item) => (
+        {products.map((item) => (
           <Product key={item.id} data={item} />
         ))}
       </div>

@@ -5,8 +5,12 @@ import { getCart } from "@/utils/prisma-actions";
 
 export default async function Cart() {
   let cartId = cookies().get("cartId")?.value;
-
   const cart = await getCart(cartId);
 
-  return <CartModal cart={cart} />;
+  return (
+    <>
+      {" "}
+      <CartModal cart={cart} />
+    </>
+  );
 }

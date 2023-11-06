@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -29,7 +29,9 @@
     "react-hook-form": "^7.47.0",
     "storybook": "^7.4.6",
     "storybook-tailwind-foundations": "^1.1.2",
-    "tailwind-merge": "^1.14.0"
+    "tailwind-merge": "^1.14.0",
+    "tw-elements-react": "^1.0.0-alpha2",
+    "zustand": "^4.4.6"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.4.6",

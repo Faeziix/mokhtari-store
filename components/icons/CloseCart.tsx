@@ -1,15 +1,23 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 
-export default function CloseCart({ className }: { className?: string }) {
+type CloseCartProps = React.ComponentProps<"button"> & {
+  className?: string;
+  onClick?: () => void;
+};
+
+export default function CloseCart({ className, ...props }: CloseCartProps) {
   return (
-    <div className="relative flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white">
+    <button
+      {...props}
+      className="relative flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white"
+    >
       <XMarkIcon
         className={clsx(
           "h-6 transition-all ease-in-out hover:scale-110 ",
-          className,
+          className
         )}
       />
-    </div>
+    </button>
   );
 }

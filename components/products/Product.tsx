@@ -5,13 +5,27 @@ import type { Item as Product } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { useCartStore } from "@/stores/cart-store";
+import Tag from "@/app/products/Tag";
+import Tags from "@/app/products/Tags";
 
 type ItemProps = {
-  data: Product;
+  data: {
+    id: number;
+    name: string;
+    brand: string;
+    description: string;
+    price: number;
+    // image url
+    picture: string;
+    tags: string[];
+  };
 };
 
 function Product({ data }: ItemProps) {
-  const { id, name, brand, description, price, picture } = data.attributes;
+  const { addToCart, cart } = useCartStore();
+  const { name, description, price, tags } = data;
+
   const router = useRouter();
 
   function onClick() {
@@ -20,12 +34,12 @@ function Product({ data }: ItemProps) {
   }
 
   return (
-    <div className="text-left rounded-md p-4 md:max-w-[300px] w-full flex flex-col gap-4 justify-between shadow-[rgba(149,157,165,0.2)_0px_4px_24px]">
+    <div className="text-left h-full rounded-md p-4 md:max-w-[300px] w-full flex flex-col gap-4 justify-between shadow-[rgba(149,157,165,0.2)_0px_4px_24px]">
       <div className=" flex flex-col gap-2 w-full">
         <Link className="w-full" href="#">
           <div className="mx-auto">
             <Image
-              src={"http://127.0.0.1:1337" + picture.data[0].attributes.url}
+              src={data.picture}
               width={250}
               height={250}
               alt={name}
@@ -33,34 +47,40 @@ function Product({ data }: ItemProps) {
             />
           </div>
           <div>
-            <h4 className="text-sm mb-0 ">{name}</h4>
-            <p className="text-sm">{description}</p>
+            <h3 className="text-base mb-1">{name}</h3>
+            <div className="mb-1">
+              <Tags tags={tags} />
+            </div>
+            <p className="text-xxs">{description}</p>
           </div>
         </Link>
       </div>
 
-      <div className="flex text-xs justify-center items-center mb-4">
-        <div className="bg-black text-white px-2 py-1">100ml</div>
-        <div className="px-2 py-1">100ml</div>
-        <div className="px-2 py-1">100ml</div>
-      </div>
-      <button className="bg-gray-300 py-2">
-        <span className="font-bold">ADD TO BAG</span>
-        <div className="flex flex-col gap-2">
-          <p>
-            {Number(price).toLocaleString(undefined, {
-              maximumFractionDigits: 2,
-            })}{" "}
-            T
-          </p>
-          {/* <button */}
-          {/*   onClick={onClick} */}
-          {/*   className="border font-bold px-2 py-2 rounded" */}
-          {/* > */}
-          {/*   Add to cart */}
-          {/* </button> */}
+      <div>
+        <div className="flex text-[8px] justify-center items-center mb-4 gap-1 text-center">
+          <div className="bg-black text-white px-1 py-1 ">100ml</div>
+          <div className="px-1 py-1 border border-black  border-solid">
+            100ml
+          </div>
+          <div className="px-1 py-1 border border-black  border-solid">
+            100ml
+          </div>
         </div>
-      </button>
+        <button
+          onClick={() => addToCart(data)}
+          className="bg-gray-300 py-2 w-full"
+        >
+          <span className="font-bold text-sm">ADD TO BAG</span>
+          <div className="flex flex-col gap-2 ">
+            <p className="text-xs">
+              {Number(price).toLocaleString(undefined, {
+                maximumFractionDigits: 2,
+              })}{" "}
+              T
+            </p>
+          </div>
+        </button>
+      </div>
     </div>
   );
 }
