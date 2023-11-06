@@ -7,9 +7,9 @@ function Services() {
     <div>
       <h1 className="">We Find a Special Way to Your Shiny Skin</h1>
       <p className="mb-4">
-        All works are made with Spain's Anubis brand, Germany's Jannssen,
-        Arcana; Poland, Klapp Germany, Forever America, Fiderm Turkey and
-        Italian products.
+        All works are made with Spain&apos;s Anubis brand, Germany&apos;s
+        Jannssen, Arcana; Poland, Klapp Germany, Forever America, Fiderm Turkey
+        and Italian products.
       </p>
 
       <div className="">
