@@ -1,5 +1,3 @@
-"use server";
-
 import { addToCart, createCart, getCart } from "@/utils/prisma-actions";
 import { cookies } from "next/headers";
 
@@ -31,7 +29,7 @@ export const addItem = async (item): Promise<String | undefined> => {
 };
 
 export const removeItem = async (
-  lineId: string,
+  lineId: string
 ): Promise<String | undefined> => {
   const cartId = cookies().get("cartId")?.value;
 
